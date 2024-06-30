@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+.post-card {
+  @apply bg-gray-100 dark:bg-gray-800 p-4 rounded-lg mb-4;
+}
+
+.post-title {
+  @apply text-xl font-bold mb-2 text-gray-900 dark:text-white;
+}
+
+.post-meta {
+  @apply text-sm text-gray-600 dark:text-gray-400 mb-2;
+}
+
+.post-excerpt {
+  @apply text-gray-700 dark:text-gray-300;
+}
+
+.sidebar-icon {
+  @apply w-6 h-6 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white cursor-pointer;
+}
