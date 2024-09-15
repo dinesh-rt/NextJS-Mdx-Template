@@ -1,9 +1,12 @@
+import Link from 'next/link'
 import { FaSearch } from 'react-icons/fa'
 
 export default function Header() {
   return (
     <header className="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
-      <h1 className="text-xl font-bold text-gray-800 dark:text-gray-200">Home</h1>
+      <Link href="/" className="text-xl font-bold text-gray-800 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400">
+        Home
+      </Link>
       <div className="relative">
         <input
           type="text"

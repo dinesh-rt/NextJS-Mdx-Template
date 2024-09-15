@@ -5,8 +5,8 @@ import Header from '../components/Header'
 import RightSidebar from '../components/RightSidebar'
 
 export const metadata = {
-  title: 'Chirpy - A text-focused Jekyll theme',
-  description: 'A text-focused Jekyll theme',
+  title: 'Your Chirpy-like Website',
+  description: 'A text-focused Next.js theme inspired by Chirpy',
 }
 
 export default function RootLayout({ children }) {

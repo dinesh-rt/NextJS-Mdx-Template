@@ -1,26 +1,58 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { FaMoon, FaSun, FaGithub, FaTwitter, FaEnvelope, FaRss, FaHome, FaList, FaTags, FaArchive, FaInfo } from 'react-icons/fa'
+import { getAllTags } from '../lib/posts'
+import Image from 'next/image'
 import { useTheme } from './ThemeProvider'
 
 export default function Sidebar() {
+  const [tags, setTags] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
   const { theme, toggleTheme } = useTheme()
+
+  useEffect(() => {
+    getAllTags()
+      .then(setTags)
+      .finally(() => setIsLoading(false))
+  }, [])
 
   return (
     <aside className="w-64 min-h-screen p-4 border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
       <div className="mb-8 text-center">
-        <img src="/avatar.png" alt="Avatar" className="w-24 h-24 mx-auto mb-2 rounded-full" />
+      <Image 
+          src="/images/avatar.jpeg"  // Update this path to your new avatar image
+          alt="Avatar"
+          width={96}  // Adjust based on your desired size
+          height={96} // Adjust based on your desired size
+          className="mx-auto mb-2 rounded-full"
+        />
         <h1 className="text-2xl font-bold">Chirpy</h1>
         <p className="text-sm text-gray-600 dark:text-gray-400">A text-focused Jekyll theme</p>
       </div>
       <nav className="mb-8">
         <ul>
-          <li><Link href="/" className="flex items-center py-2 text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"><FaHome className="mr-2" /> HOME</Link></li>
-          <li><Link href="/categories" className="flex items-center py-2 text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"><FaList className="mr-2" /> CATEGORIES</Link></li>
-          <li><Link href="/tags" className="flex items-center py-2 text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"><FaTags className="mr-2" /> TAGS</Link></li>
-          <li><Link href="/archives" className="flex items-center py-2 text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"><FaArchive className="mr-2" /> ARCHIVES</Link></li>
-          <li><Link href="/about" className="flex items-center py-2 text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"><FaInfo className="mr-2" /> ABOUT</Link></li>
+          <li><Link href="/" className="flex items-center py-2 hover:text-blue-500"><FaHome className="mr-2" /> HOME</Link></li>
+          <li><Link href="/categories" className="flex items-center py-2 hover:text-blue-500"><FaList className="mr-2" /> CATEGORIES</Link></li>
+          <li>
+            <div className="flex items-center py-2"><FaTags className="mr-2" /> TAGS</div>
+            {isLoading ? (
+              <p>Loading tags...</p>
+            ) : (
+              <ul className="pl-6">
+                {tags.map(([tag, count]) => (
+                  <li key={tag}>
+                    <Link href={`/tags/${tag}`} className="flex items-center py-1 hover:text-blue-500">
+                      {tag} <span className="ml-auto text-sm text-gray-500">({count})</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+          <li><Link href="/archives" className="flex items-center py-2 hover:text-blue-500"><FaArchive className="mr-2" /> ARCHIVES</Link></li>
+          <li><Link href="/about" className="flex items-center py-2 hover:text-blue-500"><FaInfo className="mr-2" /> ABOUT</Link></li>
         </ul>
       </nav>
       <div className="flex justify-center space-x-4 mt-8">
@@ -33,7 +65,7 @@ export default function Sidebar() {
         <FaTwitter className="sidebar-icon text-gray-600 hover:text-blue-400" />
         <FaEnvelope className="sidebar-icon text-gray-600 hover:text-red-500" />
         <FaRss className="sidebar-icon text-gray-600 hover:text-orange-500" />
-      </div>
-    </aside>
+      </div>    
+      </aside>
   )
 }
