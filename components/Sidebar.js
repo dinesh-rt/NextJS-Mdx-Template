@@ -1,14 +1,15 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { FaMoon, FaSun, FaGithub, FaTwitter, FaEnvelope, FaRss, FaHome, FaList, FaTags, FaArchive, FaInfo } from 'react-icons/fa'
+import { FaMoon, FaSun, FaGithub, FaTwitter, FaEnvelope, FaRss, FaHome, FaList, FaTags, FaArchive, FaInfo, FaChevronDown, FaChevronUp } from 'react-icons/fa'
 import { getAllTags } from '../lib/posts'
 import Image from 'next/image'
 import { useTheme } from './ThemeProvider'
 
 export default function Sidebar() {
   const [tags, setTags] = useState([])
+  const [isTagsOpen, setIsTagsOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const { theme, toggleTheme } = useTheme()
 
@@ -17,6 +18,8 @@ export default function Sidebar() {
       .then(setTags)
       .finally(() => setIsLoading(false))
   }, [])
+
+  const toggleTags = () => setIsTagsOpen(!isTagsOpen)
 
   return (
     <aside className="w-64 min-h-screen p-4 border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
@@ -36,19 +39,29 @@ export default function Sidebar() {
           <li><Link href="/" className="flex items-center py-2 hover:text-blue-500"><FaHome className="mr-2" /> HOME</Link></li>
           <li><Link href="/categories" className="flex items-center py-2 hover:text-blue-500"><FaList className="mr-2" /> CATEGORIES</Link></li>
           <li>
-            <div className="flex items-center py-2"><FaTags className="mr-2" /> TAGS</div>
-            {isLoading ? (
-              <p>Loading tags...</p>
-            ) : (
-              <ul className="pl-6">
-                {tags.map(([tag, count]) => (
-                  <li key={tag}>
-                    <Link href={`/tags/${tag}`} className="flex items-center py-1 hover:text-blue-500">
-                      {tag} <span className="ml-auto text-sm text-gray-500">({count})</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+            <button 
+              onClick={toggleTags} 
+              className="flex items-center justify-between w-full py-2 hover:text-blue-500 focus:outline-none"
+            >
+              <span className="flex items-center">
+                <FaTags className="mr-2" /> TAGS
+              </span>
+              {isTagsOpen ? <FaChevronUp /> : <FaChevronDown />}
+            </button>
+            {isTagsOpen && (
+              isLoading ? (
+                <p className="pl-6 py-2">Loading tags...</p>
+              ) : (
+                <ul className="pl-6">
+                  {tags.map(([tag, count]) => (
+                    <li key={tag}>
+                      <Link href={`/tags/${tag}`} className="flex items-center py-1 hover:text-blue-500">
+                        {tag} <span className="ml-auto text-sm text-gray-500">({count})</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )
             )}
           </li>
           <li><Link href="/archives" className="flex items-center py-2 hover:text-blue-500"><FaArchive className="mr-2" /> ARCHIVES</Link></li>
@@ -65,7 +78,7 @@ export default function Sidebar() {
         <FaTwitter className="sidebar-icon text-gray-600 hover:text-blue-400" />
         <FaEnvelope className="sidebar-icon text-gray-600 hover:text-red-500" />
         <FaRss className="sidebar-icon text-gray-600 hover:text-orange-500" />
-      </div>    
-      </aside>
+      </div>
+    </aside>
   )
 }

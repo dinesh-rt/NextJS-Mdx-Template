@@ -7,6 +7,19 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
+/* Dark mode styles */
+.dark {
+  @apply bg-gray-900 text-gray-100;
+}
+
+.dark .bg-white {
+  @apply bg-gray-800;
+}
+
+.dark .text-gray-800 {
+  @apply text-gray-200;
+}
+
 .sidebar-icon {
   @apply w-5 h-5 cursor-pointer transition-colors duration-200;
 }
