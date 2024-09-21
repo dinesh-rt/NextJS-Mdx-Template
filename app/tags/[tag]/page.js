@@ -8,7 +8,7 @@ export default async function TagPage({ params }) {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">Posts tagged with "{tag}" ({posts.length})</h1>
+      <h1 className="text-3xl font-bold mb-6">Posts tagged with &quot;{tag}&quot; ({posts.length})</h1>
       <ul className="space-y-4">
         {posts.map(post => (
           <li key={post.slug} className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
