@@ -23,4 +23,4 @@ module.exports = {
     require('@tailwindcss/typography'),
   ],
   darkMode: 'class',
-} 
+}
