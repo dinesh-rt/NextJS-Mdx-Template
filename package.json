@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate-posts-data": "node scripts/generate-post-data.js",
+    "build": "npm run generate-posts-data && next build"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.15",

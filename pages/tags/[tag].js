@@ -1,13 +1,9 @@
 import Link from 'next/link'
-import { getPostsByTag, getAllTags } from '../../../lib/posts'
-import { server } from '../../../config'
+import { getAllTags, getPostsByTag } from '../../lib/posts'
 
-export default async function TagPage({ params }) {
-  const { tag } = params
-  const posts = await getPostsByTag(tag)
-
+export default function TagPage({ posts, tag }) {
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6">Posts tagged with &quot;{tag}&quot; ({posts.length})</h1>
       <ul className="space-y-4">
         {posts.map(post => (
@@ -23,7 +19,23 @@ export default async function TagPage({ params }) {
   )
 }
 
-export async function generateStaticParams() {
-  const tags = await getAllTags()
-  return tags.map(([tag]) => ({ tag }))
+export function getStaticPaths() {
+  const tags = getAllTags()
+  const paths = tags.map(tag => ({
+    params: { tag }
+  }))
+
+  return { paths, fallback: false }
+}
+
+export function getStaticProps({ params }) {
+  const { tag } = params
+  const posts = getPostsByTag(tag)
+
+  return {
+    props: {
+      posts,
+      tag
+    }
+  }
 }

@@ -2,27 +2,23 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { FaMoon, FaSun, FaGithub, FaTwitter, FaEnvelope, FaRss, FaHome, FaList, FaTags, FaArchive, FaInfo, FaChevronDown, FaChevronUp } from 'react-icons/fa'
+import { FaHome, FaList, FaTags, FaArchive, FaInfo, FaChevronDown, FaChevronUp, FaMoon, FaGithub, FaTwitter, FaEnvelope, FaRss, FaSun } from 'react-icons/fa'
 import { getAllTags } from '../lib/posts'
-import Image from 'next/image'
 import { useTheme } from './ThemeProvider'
+import Image from 'next/image'
 
 export default function Sidebar() {
   const [tags, setTags] = useState([])
   const [isTagsOpen, setIsTagsOpen] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
   const { theme, toggleTheme } = useTheme()
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    getAllTags()
-      .then(setTags)
-      .finally(() => setIsLoading(false))
+    setTags(getAllTags())
   }, [])
 
-  const toggleTags = () => setIsTagsOpen(!isTagsOpen)
-
   return (
-    <aside className="w-64 min-h-screen p-4 border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+    <aside className="w-64 min-h-screen p-6 bg-gray-900 text-gray-400">
       <div className="mb-8 text-center">
       <Image 
           src="/images/avatar.jpeg"  // Update this path to your new avatar image
@@ -35,33 +31,27 @@ export default function Sidebar() {
         <p className="text-sm text-gray-600 dark:text-gray-400">A text-focused Jekyll theme</p>
       </div>
       <nav className="mb-8">
-        <ul>
+        <ul className="space-y-2">
           <li><Link href="/" className="flex items-center py-2 hover:text-blue-500"><FaHome className="mr-2" /> HOME</Link></li>
           <li><Link href="/categories" className="flex items-center py-2 hover:text-blue-500"><FaList className="mr-2" /> CATEGORIES</Link></li>
           <li>
             <button 
-              onClick={toggleTags} 
-              className="flex items-center justify-between w-full py-2 hover:text-blue-500 focus:outline-none"
+              onClick={() => setIsTagsOpen(!isTagsOpen)} 
+              className="flex items-center justify-between w-full py-1.5 hover:text-white"
             >
-              <span className="flex items-center">
-                <FaTags className="mr-2" /> TAGS
-              </span>
+              <span className="flex items-center"><FaTags className="mr-3" /> TAGS</span>
               {isTagsOpen ? <FaChevronUp /> : <FaChevronDown />}
             </button>
             {isTagsOpen && (
-              isLoading ? (
-                <p className="pl-6 py-2">Loading tags...</p>
-              ) : (
-                <ul className="pl-6">
-                  {tags.map(([tag, count]) => (
-                    <li key={tag}>
-                      <Link href={`/tags/${tag}`} className="flex items-center py-1 hover:text-blue-500">
-                        {tag} <span className="ml-auto text-sm text-gray-500">({count})</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              )
+              <ul className="mt-2 ml-6 space-y-1">
+                {tags.map((tag) => (
+                  <li key={tag}>
+                    <Link href={`/tags/${tag}`} className="flex items-center py-1 hover:text-white">
+                      {tag}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             )}
           </li>
           <li><Link href="/archives" className="flex items-center py-2 hover:text-blue-500"><FaArchive className="mr-2" /> ARCHIVES</Link></li>
