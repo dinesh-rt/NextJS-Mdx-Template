@@ -14,6 +14,7 @@ function SearchResultsContent() {
     const fetchSearchResults = async () => {
       setIsLoading(true)
       try {
+        console.log("sending query")
         const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`)
         const data = await res.json()
         setResults(data)

@@ -11,11 +11,12 @@ function generatePostsData() {
     const slug = fileName.replace(/\.md$/, '');
     const fullPath = path.join(postsDirectory, fileName);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const { data } = matter(fileContents);
+    const { data, content } = matter(fileContents)
 
     return {
       slug,
-      ...data
+      ...data,
+      content
     };
   }).sort((a, b) => new Date(b.date) - new Date(a.date));
 
