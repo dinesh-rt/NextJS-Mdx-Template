@@ -1,46 +1,15 @@
 ---
-title: About Me
+name: Dinesh Thangavel
+title: Software Engineer
+image: /images/portrait.jpg
+email: dinesh@dutycalls.dev
+github: dinesh-rt
+linkedin: rtdinesh
+twitter: rtdinesh
 ---
 
-<div style="text-align: center; margin: 30px 0;">
-  <img src="/images/your-picture.jpg" alt="Your Name" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover;" />
-</div>
+I am a Software Engineer at Nvidia. My interests include Operating Systems, building end-to-end automations and anything that entices me. Avid hiker, runner during my free time. 
 
-Hello! I'm [Your Name], a passionate [Your Profession/Interest] based in [Your Location]. 
+Graduated Masters of Science from UW-Madison with Computer Engineering major. I finished my Undergraduate education at College Of Engineering, Guindy, India. 
 
-## My Background
-
-I have been working in [Your Field] for [X] years, specializing in [Your Specialties]. My journey in this field began when [brief story or reason for entering the field].
-
-## What I Do
-
-Currently, I'm focused on:
-
-- [Project or Area of Focus 1]
-- [Project or Area of Focus 2]
-- [Project or Area of Focus 3]
-
-## My Interests
-
-Outside of work, I'm passionate about:
-
-1. [Interest 1]
-2. [Interest 2]
-3. [Interest 3]
-
-## Get in Touch
-
-Feel free to reach out to me for collaborations or just a friendly chat:
-
-- Email: [your.email@example.com](mailto:your.email@example.com)
-- LinkedIn: [Your LinkedIn Profile](https://www.linkedin.com/in/yourprofile)
-- Twitter: [@YourTwitterHandle](https://twitter.com/YourTwitterHandle)
-
-## And finally, a bit of humor...
-
-<div style="text-align: center; margin: 30px 0;">
-  <img src="https://imgs.xkcd.com/comics/code_quality.png" alt="XKCD: Code Quality" style="max-width: 100%; height: auto;" />
-  <p><small>Source: <a href="https://xkcd.com/1513/" target="_blank">XKCD</a></small></p>
-</div>
-
-Remember, in the world of coding, we're all just trying our best!
+Won Techcrunch SF hackathon in 2017 by building a store associate using Alexa. Published our work on building OpAmp in VLSI conference in Hyderabad, 2013. Won numerous inter-collegiate robotics events during my undergrad. 
