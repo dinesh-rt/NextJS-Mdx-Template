@@ -3,8 +3,10 @@ import path from 'path'
 import matter from 'gray-matter'
 import Link from 'next/link'
 import { FaCalendarAlt, FaFolder } from 'react-icons/fa'
+import { unstable_noStore as noStore } from 'next/cache'
 
 function getPostsData() {
+  noStore(); // Disable static rendering
   const postsDirectory = path.join(process.cwd(), 'posts')
   const fileNames = fs.readdirSync(postsDirectory)
   const postsData = fileNames.map(fileName => {
@@ -25,7 +27,7 @@ function getPostsData() {
 }
 
 export default function Home() {
-  const posts = getPostsData()
+  let posts = getPostsData();
 
   return (
     <div className="space-y-8">

@@ -23,3 +23,29 @@ body {
 .sidebar-icon {
   @apply w-5 h-5 cursor-pointer transition-colors duration-200;
 }
+
+.markdown-content .image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.markdown-content .image-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+.markdown-content .image-title {
+  margin-top: 0.5rem;
+  font-style: italic;
+  color: #666;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .markdown-content .image-title {
+    color: #999;
+  }
+}
