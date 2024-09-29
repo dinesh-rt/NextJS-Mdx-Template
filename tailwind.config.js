@@ -7,6 +7,14 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundColor: {
+        'theme-bg': 'var(--bg-color)',
+        'theme-sidebar': 'var(--sidebar-bg)',
+      },
+      textColor: {
+        'theme-text': 'var(--text-color)',
+        'theme-sidebar-text': 'var(--sidebar-text)',
+      },
       colors: {
         emerald: {
           300: '#6ee7b7',
@@ -18,7 +26,7 @@ module.exports = {
           400: '#8b8b8b',
           300: '#a6a6a6',
           200: '#d3d3d3',
-        }
+        },
       }
     },
   },

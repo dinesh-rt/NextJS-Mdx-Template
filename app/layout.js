@@ -12,8 +12,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <ThemeProvider>
-        <body className="flex bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+      <body className="flex bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+        <ThemeProvider>
           <Sidebar />
           <div className="flex-grow flex flex-col">
             <Header />
@@ -22,8 +22,8 @@ export default function RootLayout({ children }) {
             </main>
           </div>
           <RightSidebar />
-        </body>
-      </ThemeProvider>
+        </ThemeProvider>
+      </body>
     </html>
   )
 }

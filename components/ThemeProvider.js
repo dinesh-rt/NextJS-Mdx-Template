@@ -1,23 +1,23 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 
 const ThemeContext = createContext()
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState('dark')
+  const [theme, setTheme] = useState('light')
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') || 'dark'
-    setTheme(savedTheme)
-    document.documentElement.classList.toggle('dark', savedTheme === 'dark')
+    const storedTheme = localStorage.getItem('theme') || 'light'
+    setTheme(storedTheme)
+    document.documentElement.setAttribute('data-theme', storedTheme)
   }, [])
 
   const toggleTheme = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark'
+    const newTheme = theme === 'light' ? 'dark' : 'light'
     setTheme(newTheme)
     localStorage.setItem('theme', newTheme)
-    document.documentElement.classList.toggle('dark', newTheme === 'dark')
+    document.documentElement.setAttribute('data-theme', newTheme)
   }
 
   return (
