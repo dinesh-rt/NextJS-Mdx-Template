@@ -12,18 +12,24 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="flex bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-        <ThemeProvider>
+      <ThemeProvider>
+        <body className="flex bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-300">
           <Sidebar />
-          <div className="flex-grow flex flex-col">
+          <div className="flex-grow flex flex-col min-h-screen">
             <Header />
-            <main className="flex-grow p-8">
-              {children}
-            </main>
+            <div className="flex justify-center flex-grow">
+              <div className="w-full max-w-screen-xl flex">
+                <main className="w-2/3 p-8 overflow-y-auto">
+                  {children}
+                </main>
+                <aside className="w-1/3 p-8 overflow-y-auto">
+                  <RightSidebar />
+                </aside>
+              </div>
+            </div>
           </div>
-          <RightSidebar />
-        </ThemeProvider>
-      </body>
+        </body>
+      </ThemeProvider>
     </html>
   )
 }

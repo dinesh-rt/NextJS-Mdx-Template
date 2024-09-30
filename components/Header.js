@@ -1,9 +1,53 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState, useEffect } from 'react'
+import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { FaSearch } from 'react-icons/fa'
+import { FaSearch, FaChevronRight } from 'react-icons/fa'
+
+const Breadcrumb = () => {
+  const pathname = usePathname()
+  const [breadcrumbs, setBreadcrumbs] = useState([])
+
+  useEffect(() => {
+    const linkPath = pathname.split('/')
+    linkPath.shift()
+
+    const pathArray = linkPath.map((path, i) => {
+      return { breadcrumb: path, href: '/' + linkPath.slice(0, i + 1).join('/') }
+    })
+
+    setBreadcrumbs(pathArray)
+  }, [pathname])
+
+  if (!breadcrumbs.length) {
+    return <span className="text-blue-400">Home</span>
+  }
+
+  return (
+    <nav aria-label="breadcrumbs">
+      <ol className="flex items-center space-x-2">
+        <li>
+          <Link href="/" className="text-gray-400 hover:text-white">
+            Home
+          </Link>
+        </li>
+        {breadcrumbs.map((breadcrumb, i) => (
+          <li key={breadcrumb.href} className="flex items-center">
+            <FaChevronRight className="text-gray-600 mx-2" />
+            {i === breadcrumbs.length - 1 ? (
+              <span className="text-blue-400">{breadcrumb.breadcrumb}</span>
+            ) : (
+              <Link href={breadcrumb.href} className="text-gray-400 hover:text-white">
+                {breadcrumb.breadcrumb}
+              </Link>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}
 
 export default function Header() {
   const [searchQuery, setSearchQuery] = useState('')
@@ -17,22 +61,26 @@ export default function Header() {
   }
 
   return (
-    <header className="flex justify-between items-center p-4 bg-white dark:bg-gray-800">
-      <Link href="/" className="text-xl font-bold text-gray-800 dark:text-white hover:text-blue-500 dark:hover:text-blue-400">
-        Home
-      </Link>
-      <form onSubmit={handleSearch} className="relative">
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="pl-8 pr-4 py-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white"
-        />
-        <button type="submit" className="absolute left-2 top-1/2 transform -translate-y-1/2">
-          <FaSearch className="text-gray-400" />
-        </button>
-      </form>
+    <header className="bg-gray-100 dark:bg-gray-900 p-4">
+      <div className="max-w-screen-xl mx-auto flex items-center">
+        <div className="w-2/3 pr-8">
+          <Breadcrumb />
+        </div>
+        <div className="w-1/3 pl-8 flex justify-start">
+          <form onSubmit={handleSearch} className="flex items-center">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="p-1 w-40 rounded-l bg-white dark:bg-gray-800 text-gray-800 dark:text-white focus:outline-none text-sm"
+            />
+            <button type="submit" className="bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white p-1 rounded-r">
+              <FaSearch />
+            </button>
+          </form>
+        </div>
+      </div>
     </header>
   )
 }
