@@ -45,9 +45,12 @@ export default function SidebarContent(frontmatter) {
               <ul className="mt-2 ml-6 space-y-1">
                 {tags.map((tag) => (
                   <li key={tag}>
-                    <Link href={`/tags/${tag}`} className="flex items-center py-1 hover:text-gray-900 dark:hover:text-white">
-                      {tag}
-                    </Link>
+                    <Link 
+                      href={`/tags/${encodeURIComponent(typeof tag === 'string' ? tag : tag.slug || tag.name || '')}`}
+                      className="flex items-center py-1 hover:text-gray-900 dark:hover:text-white"
+                    >
+                      {typeof tag === 'string' ? tag : tag.name || 'Unnamed Tag'}
+                   </Link>
                   </li>
                 ))}
               </ul>

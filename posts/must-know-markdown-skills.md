@@ -16,9 +16,6 @@ You can create headers using the `#` symbol. The number of `#` symbols indicates
 # Header 1
 ## Header 2
 ### Header 3
-#### Header 4
-##### Header 5
-###### Header 6
 
 ## 2. Emphasis
 
@@ -67,23 +64,9 @@ You can also add title text to links:
 
 To add an image, use an exclamation mark, followed by alt text in brackets, and the path or URL to the image in parentheses:
 
-![Alt text for the image](/images/graph.jpeg)
+<img src="/images/graph.jpeg" alt="Alt text for the image" />
 
 To center an image, we need to use HTML:
-
-<div style="display: flex; flex-direction: column; align-items: center; margin: 2rem 0; text-align: center;">
-  <img src="/images/graph.jpeg" alt="A centered image" style="max-width: 100%; height: auto;" />
-  <p style="margin-top: 0.5rem; font-style: italic; color: #666;">Figure 1: An example centered image</p>
-</div>
-
-<div class="image-container">
-  <img src="/images/graph.jpeg" alt="A centered image" />
-  <p class="image-title">Figure 1: An example centered image</p>
-</div>
-
-<div style="text-align:center">
-  <img src="https://picsum.photos/400/300" alt="A random image" />
-</div>
 
 ## 6. Code
 
@@ -93,7 +76,7 @@ Use the `print()` function in Python.
 
 For code blocks, use triple backticks:
 
-```python
+```markdown
 def greet(name):
     print(f"Hello, {name}!")
 
@@ -132,11 +115,6 @@ You can create task lists using brackets with a space or an 'x':
 - [ ] Update the website
 - [ ] Contact the media
 
-## 11. Footnotes
-
-You can add footnotes to your text like this[^1].
-
-[^1]: This is the footnote content.
 
 ## 12. Strikethrough
 

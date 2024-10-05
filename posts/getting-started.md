@@ -7,7 +7,7 @@ tags: ['chirpy', 'setup']
 
 Welcome to Chirpy! This guide will help you set up your new blog using the Chirpy theme.
 
-Link to next step [[customize-favicon]] page
+[Link to next step](/posts/customize-favicon)
 
 ## Installation
 
