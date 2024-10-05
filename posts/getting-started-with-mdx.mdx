@@ -1,0 +1,70 @@
+---
+title: "Getting Started with MDX in Next.js"
+date: "2024-04-01"
+tags: ["mdx", "next.js", "react"]
+categories: ["Tutorial"]
+---
+
+# Getting Started with MDX in Next.js
+
+Welcome to this tutorial on using MDX with Next.js! MDX allows you to use JSX in your markdown content, giving you the full power of React components in your blog posts.
+
+## What is MDX?
+
+MDX is a format that lets you seamlessly write JSX in your Markdown documents. It's a powerful way to add dynamic content and components to your otherwise static Markdown.
+
+## Basic Markdown Still Works
+
+You can still use all the standard Markdown features:
+
+- **Bold text** and *italic text*
+- Lists (like this one!)
+- [Links](https://mdxjs.com/)
+- And more!
+
+## Using React Components
+
+But now you can also include React components directly in your content!
+
+import { Counter } from '../components/Counter'
+
+<Counter />
+
+Cool, right? This is a React component embedded right in our MDX!
+
+## Code Blocks
+
+MDX also supports syntax highlighting in code blocks:
+
+```javascript
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+
+console.log(greet('MDX User'));
+```
+
+## Linking to Other Posts
+
+One of the great features we've implemented is the ability to link to other posts using double square brackets. For example:
+
+- Check out our post on [[customize-favicon]]
+- Learn about [[must-know-markdown-skills]]
+
+These will automatically be converted to proper links!
+
+## Using Custom Components
+
+We can define and use custom components to enhance our posts. For example, let's use a custom `InfoBox` component:
+
+import InfoBox from '../components/InfoBox'
+
+<InfoBox>
+  This is a custom InfoBox component. You can use it to highlight important information in your posts!
+</InfoBox>
+
+## Conclusion
+
+MDX combines the simplicity of Markdown with the power of React, allowing you to create rich, interactive blog posts. Experiment with it and see what you can create!
+
+export default ({ children }) => <div className="mdx-post">{children}</div>

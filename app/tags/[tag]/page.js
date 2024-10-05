@@ -1,5 +1,5 @@
-import { getAllTags, getPostsByTag } from '@/lib/posts';
 import Link from 'next/link';
+import { getAllTags, getPostsByTag } from '@/lib/posts';
 
 export async function generateStaticParams() {
   const tags = getAllTags();
@@ -20,9 +20,13 @@ export default async function TagPage({ params }) {
               {post.title}
             </Link>
             <p className="text-gray-600 dark:text-gray-400 mt-2">{post.date}</p>
+            <div className="mt-4 prose dark:prose-invert">
+              {/* We'll just show an excerpt here instead of full MDX content */}
+              <p>{post.excerpt || post.content.slice(0, 150)}...</p>
+            </div>
           </li>
         ))}
       </ul>
     </div>
-  )
+  );
 }

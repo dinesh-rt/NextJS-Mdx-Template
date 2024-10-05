@@ -1,33 +1,9 @@
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
 import Link from 'next/link'
 import { FaCalendarAlt, FaFolder } from 'react-icons/fa'
-import { unstable_noStore as noStore } from 'next/cache'
+import { getAllPosts } from '@/lib/posts'
 
-function getPostsData() {
-  noStore(); // Disable static rendering
-  const postsDirectory = path.join(process.cwd(), 'posts')
-  const fileNames = fs.readdirSync(postsDirectory)
-  const postsData = fileNames.map(fileName => {
-    const slug = fileName.replace(/\.md$/, '')
-    const fullPath = path.join(postsDirectory, fileName)
-    const fileContents = fs.readFileSync(fullPath, 'utf8')
-    const { data, content } = matter(fileContents)
-    const excerpt = content.slice(0, 200) + '...'
-
-    return {
-      slug,
-      ...data,
-      excerpt
-    }
-  })
-
-  return postsData.sort((a, b) => new Date(b.date) - new Date(a.date))
-}
-
-export default function Home() {
-  let posts = getPostsData();
+export default async function Home() {
+  const posts = await getAllPosts();
 
   return (
     <div className="space-y-8">
@@ -40,7 +16,7 @@ export default function Home() {
               <FaCalendarAlt className="mr-2" />
               <span className="mr-4">{post.date}</span>
               <FaFolder className="mr-2" />
-              {post.categories.map((category, catIndex) => (
+              {post.categories && post.categories.map((category, catIndex) => (
                 <span key={catIndex} className="mr-2">
                   {category}{catIndex < post.categories.length - 1 && ','}
                 </span>

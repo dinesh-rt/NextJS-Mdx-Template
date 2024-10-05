@@ -6,13 +6,20 @@ const nextConfig = {
         config.resolve.fallback = {
           ...config.resolve.fallback,
           fs: false,
-        };
+        }
       }
-      return config;
+      return config
     },
-    images: {
-        domains: ['localhost'], // Add any other domains you might use
-    },
+    pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   }
   
-  module.exports = nextConfig;
+  // next.config.js
+const withMDX = require('@next/mdx')({
+    extension: /\.mdx?$/,
+  })
+  
+  module.exports = withMDX({
+    pageExtensions: ['js', 'jsx', 'md', 'mdx'],
+  })
+  
+  module.exports = nextConfig

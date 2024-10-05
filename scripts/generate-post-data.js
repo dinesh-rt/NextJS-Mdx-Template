@@ -8,7 +8,7 @@ const outputFile = path.join(process.cwd(), 'cache/posts-data.json');
 function generatePostsData() {
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map(fileName => {
-    const slug = fileName.replace(/\.md$/, '');
+    const slug = fileName.replace(/\.mdx$/, '');
     const fullPath = path.join(postsDirectory, fileName);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { data, content } = matter(fileContents)
