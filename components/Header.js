@@ -17,7 +17,9 @@ const Breadcrumb = () => {
       return { breadcrumb: path, href: '/' + linkPath.slice(0, i + 1).join('/') }
     })
 
-    setBreadcrumbs(pathArray)
+    const filteredPathArray = pathArray.filter(path => path.breadcrumb !== 'posts')
+
+    setBreadcrumbs(filteredPathArray)
   }, [pathname])
 
   if (!breadcrumbs.length) {
