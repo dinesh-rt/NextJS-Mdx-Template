@@ -31,8 +31,8 @@ export default function RightSidebar() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Recently Updated</h2>
-        <ul className="space-y-1">
+       <h2 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Recently Updated</h2>
+       <ul className="space-y-1">
           {Array.isArray(recentPosts) && recentPosts.length > 0 ? (
             recentPosts.slice(0, 4).map((post) => (
               <li key={post.slug}>
@@ -50,8 +50,8 @@ export default function RightSidebar() {
         </ul>
       </div>
       <div>
-        <h2 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Trending Tags</h2>
-        <div className="flex flex-wrap gap-2">
+       <h2 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Trending Tags</h2>
+       <div className="flex flex-wrap gap-2">
           {Array.isArray(tags) && tags.length > 0 ? (
             tags.slice(0, 4).map((tag, index) => (
               <Link

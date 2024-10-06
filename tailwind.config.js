@@ -27,7 +27,15 @@ module.exports = {
           300: '#a6a6a6',
           200: '#d3d3d3',
         },
-      }
+      },
+      screens: {
+        'xs': '480px',
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1280px',
+        '2xl': '1536px',
+      },
     },
   },
   plugins: [

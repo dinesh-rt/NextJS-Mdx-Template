@@ -19,10 +19,6 @@
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
-}
-
-/* Custom styles */
-body {
   font-family: 'Lato', sans-serif;
 }
 
@@ -44,27 +40,40 @@ body {
 }
 
 .markdown-content .image-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 2rem 0;
-  text-align: center;
+  @apply flex flex-col items-center my-8 text-center;
 }
 
 .markdown-content .image-container img {
-  max-width: 100%;
-  height: auto;
+  @apply max-w-full h-auto;
 }
 
 .markdown-content .image-title {
-  margin-top: 0.5rem;
-  font-style: italic;
-  color: #666;
+  @apply mt-2 italic text-gray-600 dark:text-gray-400;
 }
 
-/* Dark mode styles */
-@media (prefers-color-scheme: dark) {
-  .markdown-content .image-title {
-    color: #999;
+/* Responsive typography */
+@media (max-width: 640px) {
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+  h3 {
+    @apply text-lg;
+  }
+}
+
+/* Responsive padding */
+@media (max-width: 640px) {
+  .container {
+    @apply px-4;
+  }
+}
+
+/* Responsive grid */
+@media (max-width: 768px) {
+  .grid {
+    @apply grid-cols-1;
   }
 }

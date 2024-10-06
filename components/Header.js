@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { FaSearch, FaChevronRight } from 'react-icons/fa'
+import { FaSearch, FaChevronRight, FaBars } from 'react-icons/fa'
 
 const Breadcrumb = () => {
   const pathname = usePathname()
@@ -53,6 +53,7 @@ const Breadcrumb = () => {
 
 export default function Header() {
   const [searchQuery, setSearchQuery] = useState('')
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const router = useRouter()
 
   const handleSearch = (e) => {
@@ -63,25 +64,23 @@ export default function Header() {
   }
 
   return (
-    <header className="bg-gray-100 dark:bg-gray-900 p-4">
-      <div className="max-w-screen-xl mx-auto flex items-center">
-        <div className="w-2/3 pr-8">
-          <Breadcrumb />
-        </div>
-        <div className="w-1/3 pl-8 flex justify-start">
-          <form onSubmit={handleSearch} className="flex items-center">
-            <input
-              type="text"
-              placeholder="Search..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="p-1 w-40 rounded-l bg-white dark:bg-gray-800 text-gray-800 dark:text-white focus:outline-none text-sm"
-            />
-            <button type="submit" className="bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white p-1 rounded-r">
-              <FaSearch />
-            </button>
-          </form>
-        </div>
+    <header className="bg-gray-100 dark:bg-gray-900 p-4 lg:flex lg:justify-between lg:items-center">
+      <div className="hidden lg:block flex-grow">
+        <Breadcrumb />
+      </div>
+      <div className="w-full lg:w-64">
+        <form onSubmit={handleSearch} className="flex items-center w-full">
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="p-2 w-full rounded-l bg-white dark:bg-gray-800 text-gray-800 dark:text-white focus:outline-none text-sm"
+          />
+          <button type="submit" className="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white p-2 rounded-r">
+            <FaSearch />
+          </button>
+        </form>
       </div>
     </header>
   )
