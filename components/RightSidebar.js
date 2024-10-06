@@ -34,7 +34,7 @@ export default function RightSidebar() {
         <h2 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Recently Updated</h2>
         <ul className="space-y-1">
           {Array.isArray(recentPosts) && recentPosts.length > 0 ? (
-            recentPosts.slice(0, 5).map((post) => (
+            recentPosts.slice(0, 4).map((post) => (
               <li key={post.slug}>
                 <Link 
                    href={`/posts/${post.slug}`} 
@@ -53,7 +53,7 @@ export default function RightSidebar() {
         <h2 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Trending Tags</h2>
         <div className="flex flex-wrap gap-2">
           {Array.isArray(tags) && tags.length > 0 ? (
-            tags.slice(0, 10).map((tag, index) => (
+            tags.slice(0, 4).map((tag, index) => (
               <Link
                 key={index}
                 href={`/tags/${encodeURIComponent(typeof tag === 'string' ? tag : tag.slug || tag.name || '')}`}
